@@ -25,7 +25,7 @@ set(CPACK_SOURCE_IGNORE_FILES
   "/.git*;/.cvs*;${CPACK_SOURCE_IGNORE_FILES}")
 INCLUDE ( CPack )
 
-SET(CMAKE_CXX_FLAGS "/wd4725 /EHsc")
+SET(CMAKE_CXX_FLAGS "/wd4725 /EHsc /bigobj")
 
 # Set this option to find the C++ libs with their namespaced versions
 # The python modules themselves are built without versioning
@@ -76,6 +76,8 @@ SET (ILMBASE_LIBSUFFIX "")
 IF (NAMESPACE_VERSIONING)
   SET ( ILMBASE_LIBSUFFIX "-${ILMBASE_VERSION_API}" )
 ENDIF ()
+
+SET(INSTALL_DIR ${CMAKE_CURRENT_LIST_DIR}/PyAlembic/Tests)
 
 ##########################
 ADD_SUBDIRECTORY ( PyIex )

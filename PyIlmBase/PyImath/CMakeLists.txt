@@ -48,17 +48,17 @@ INSTALL ( TARGETS PyImath
 	lib
 )
 
-ADD_LIBRARY ( imathmodule ${LIB_TYPE}
+ADD_LIBRARY ( imath ${LIB_TYPE}
     imathmodule.cpp
     PyImathFun.cpp
     PyImathBasicTypes.cpp 
 )
 
-SET_TARGET_PROPERTIES ( imathmodule
-	PROPERTIES PREFIX "" SUFFIX ".so" BUILD_WITH_INSTALL_RPATH ON
+SET_TARGET_PROPERTIES ( imath
+	PROPERTIES PREFIX "" SUFFIX ".pyd" BUILD_WITH_INSTALL_RPATH ON
 )
 
-TARGET_LINK_LIBRARIES ( imathmodule
+TARGET_LINK_LIBRARIES ( imath
 	PyImath
 	PyIex
 	Imath${ILMBASE_LIBSUFFIX}
@@ -66,7 +66,7 @@ TARGET_LINK_LIBRARIES ( imathmodule
 	${Boost_LIBRARIES}
 )
 
-INSTALL ( TARGETS imathmodule
-	DESTINATION lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}/site-packages
-)
+INSTALL ( TARGETS imath PyImath
+    DESTINATION ${INSTALL_DIR}
+    )
 

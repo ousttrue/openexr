@@ -36,7 +36,6 @@
 #ifndef PyAlembic_Foundation_h_
 #define PyAlembic_Foundation_h_
 
-#include <Python.h>
 #include <Alembic/Abc/All.h>
 #include <Alembic/AbcCoreAbstract/All.h>
 #include <Alembic/Util/Config.h>

@@ -112,9 +112,9 @@ INCLUDE_DIRECTORIES(
     "../PyIEx"
     )
 
-ADD_LIBRARY(alembicmodule SHARED ${CPP_FILES})
+ADD_LIBRARY(alembic SHARED ${CPP_FILES})
 
-TARGET_LINK_LIBRARIES(alembicmodule
+TARGET_LINK_LIBRARIES(alembic
     ${Boost_LIBRARIES}
     ${ALEMBIC_LIBRARIES}
     PyImath
@@ -124,19 +124,19 @@ TARGET_LINK_LIBRARIES(alembicmodule
     Half
 )
 
-SET_TARGET_PROPERTIES(alembicmodule
-    PROPERTIES PREFIX "" SUFFIX ".so"
+SET_TARGET_PROPERTIES(alembic
+    PROPERTIES PREFIX "" SUFFIX ".pyd"
 )
 
-INSTALL (TARGETS alembicmodule
-    DESTINATION lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}/site-packages
+INSTALL (TARGETS alembic
+    DESTINATION ${INSTALL_DIR}
 )
 
 IF (USE_TESTS)
     ADD_SUBDIRECTORY(Tests)
 ENDIF()
 
-set_target_properties(alembicmodule PROPERTIES
+set_target_properties(alembic PROPERTIES
     INSTALL_RPATH_USE_LINK_PATH TRUE
     INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib)
 

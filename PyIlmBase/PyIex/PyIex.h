@@ -222,7 +222,18 @@ createExceptionProxy(const std::string &name, const std::string &module,
                                  "    return \"%s.%s('%%s')\"%%(self.args[0])\n")
                    % name % base % name % module % name).str();
 
-    handle<> tmp(PyRun_String(definition.c_str(),Py_file_input,tmpDict.ptr(),tmpDict.ptr()));
+    try {
+        auto result = PyRun_String(definition.c_str(), Py_file_input, tmpDict.ptr(), tmpDict.ptr());
+        handle<> tmp(result);
+    }
+    catch (const boost::python::error_already_set &ex)
+    {
+        int a = 0;
+    }
+    catch (...)
+    {
+        int a = 0;
+    }
     return tmpDict[name];
 }
 

@@ -35,6 +35,12 @@
 #-******************************************************************************
 
 #from imath import *
+
+import sys
+sys.path.append('.')
+
+import imath
+import alembic
 from alembic.Abc import *
 from alembic.AbcCoreAbstract import *
 from alembic.AbcGeom import *

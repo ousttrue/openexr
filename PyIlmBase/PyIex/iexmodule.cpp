@@ -60,7 +60,7 @@ registerBaseExc()
     std::string name = "BaseExc";
     std::string module = "iex";
     std::string baseName = "RuntimeError";
-    std::string baseModule = "__builtin__";
+    std::string baseModule = "builtins";
 
     // if module != baseModule, the type object isn't used
     object exc_class = createExceptionProxy(name, module, baseName, baseModule, 0);
