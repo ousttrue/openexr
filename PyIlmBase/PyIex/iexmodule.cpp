@@ -32,7 +32,6 @@
 //
 ///////////////////////////////////////////////////////////////////////////
 
-#include <Python.h>
 #include <boost/python.hpp>
 #include <boost/format.hpp>
 #include <Iex.h>

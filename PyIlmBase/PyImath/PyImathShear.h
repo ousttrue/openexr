@@ -35,7 +35,6 @@
 #ifndef _PyImathShear_h_
 #define _PyImathShear_h_
 
-#include <Python.h>
 #include <boost/python.hpp>
 #include <ImathShear.h>
 

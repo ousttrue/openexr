@@ -35,7 +35,6 @@
 #include <PyImathLine.h>
 #include "PyImathDecorators.h"
 #include "PyImathExport.h"
-#include <Python.h>
 #include <boost/python.hpp>
 #include <boost/python/make_constructor.hpp>
 #include <boost/format.hpp>
@@ -427,13 +426,13 @@ static std::string Line3_repr(const Line3<T> &v)
 
     PyObject *v1Obj = V3<T>::wrap (v1);
     PyObject *v1ReprObj = PyObject_Repr (v1Obj);
-    std::string v1ReprStr = PyString_AsString (v1ReprObj);
+    std::string v1ReprStr = PyBytes_AsString (v1ReprObj);
     Py_DECREF (v1ReprObj);
     Py_DECREF (v1Obj);
 
     PyObject *v2Obj = V3<T>::wrap (v2);
     PyObject *v2ReprObj = PyObject_Repr (v2Obj);
-    std::string v2ReprStr = PyString_AsString (v2ReprObj);
+    std::string v2ReprStr = PyBytes_AsString (v2ReprObj);
     Py_DECREF (v2ReprObj);
     Py_DECREF (v2Obj);
 

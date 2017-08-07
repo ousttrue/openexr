@@ -35,7 +35,6 @@
 #ifndef _PyImathBox_h_
 #define _PyImathBox_h_
 
-#include <Python.h>
 #include <boost/python.hpp>
 #include <ImathBox.h>
 #include <PyImathVec.h>

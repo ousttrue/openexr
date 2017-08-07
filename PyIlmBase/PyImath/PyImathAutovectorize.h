@@ -35,7 +35,6 @@
 #ifndef _PyImathAutovectorize_h_
 #define _PyImathAutovectorize_h_
 
-#include <Python.h>
 #include <boost/python.hpp>
 #include <boost/mpl/size.hpp>
 #include <boost/mpl/pop_front.hpp>

@@ -41,7 +41,6 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <Python.h>
 #include <string>
 #include <vector>
 #include <stdexcept>

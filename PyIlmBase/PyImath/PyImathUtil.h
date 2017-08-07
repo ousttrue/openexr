@@ -44,7 +44,7 @@
 //----------------------------------------------------------------------------
 
 #include <PyImathExport.h>
-#include <Python.h>
+#include <boost/python.hpp>
 
 namespace PyImath {
 

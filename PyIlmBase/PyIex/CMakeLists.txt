@@ -1,3 +1,6 @@
+ADD_DEFINITIONS(
+    -DPYIEX_EXPORTS
+    )
 
 ADD_LIBRARY ( PyIex ${LIB_TYPE}
 	PyIex.cpp

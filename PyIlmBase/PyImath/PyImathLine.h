@@ -35,7 +35,6 @@
 #ifndef _PyImathLine_h_
 #define _PyImathLine_h_
 
-#include <Python.h>
 #include <boost/python.hpp>
 #include <ImathLine.h>
 #include <PyImath.h>

@@ -35,6 +35,8 @@
 #ifndef PYIMATH_EXPORT_H
 #define PYIMATH_EXPORT_H
 
+#include <IlmBaseConfig.h>
+
 #if defined(PLATFORM_WINDOWS)
 #  if defined(PLATFORM_BUILD_STATIC)
 #    define PYIMATH_EXPORT_DEFINITION 

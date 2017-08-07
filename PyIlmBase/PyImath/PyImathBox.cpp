@@ -191,13 +191,13 @@ static std::string Box2_repr(const Box<T> &box)
 
     PyObject *minObj = converter (box.min);
     PyObject *minReprObj = PyObject_Repr (minObj);
-    std::string minReprStr = PyString_AsString (minReprObj);
+    std::string minReprStr = PyBytes_AsString (minReprObj);
     Py_DECREF (minReprObj);
     Py_DECREF (minObj);
 
     PyObject *maxObj = converter (box.max);
     PyObject *maxReprObj = PyObject_Repr (maxObj);
-    std::string maxReprStr = PyString_AsString (maxReprObj);
+    std::string maxReprStr = PyBytes_AsString (maxReprObj);
     Py_DECREF (maxReprObj);
     Py_DECREF (maxObj);
 
@@ -214,13 +214,13 @@ static std::string Box3_repr(const Box<T> &box)
 
     PyObject *minObj = converter (box.min);
     PyObject *minReprObj = PyObject_Repr (minObj);
-    std::string minReprStr = PyString_AsString (minReprObj);
+    std::string minReprStr = PyBytes_AsString (minReprObj);
     Py_DECREF (minReprObj);
     Py_DECREF (minObj);
 
     PyObject *maxObj = converter (box.max);
     PyObject *maxReprObj = PyObject_Repr (maxObj);
-    std::string maxReprStr = PyString_AsString (maxReprObj);
+    std::string maxReprStr = PyBytes_AsString (maxReprObj);
     Py_DECREF (maxReprObj);
     Py_DECREF (maxObj);
 

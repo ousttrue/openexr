@@ -42,7 +42,6 @@
 //-----------------------------------------------------------------------------
 
 #include <sstream>
-#include <Python.h>
 #include <boost/python.hpp>
 #include <IexMathFloatExc.h>
 #include <boost/python/errors.hpp>

@@ -35,7 +35,6 @@
 #ifndef _PyImathMatrix_h_
 #define _PyImathMatrix_h_
 
-#include <Python.h>
 #include <boost/python.hpp>
 #include <PyImath.h>
 #include <ImathMatrix.h>

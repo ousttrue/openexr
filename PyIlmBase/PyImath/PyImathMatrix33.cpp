@@ -37,7 +37,6 @@
 #include <PyImathMatrix.h>
 #include "PyImathExport.h"
 #include "PyImathDecorators.h"
-#include <Python.h>
 #include <boost/python.hpp>
 #include <boost/python/make_constructor.hpp>
 #include <boost/format.hpp>

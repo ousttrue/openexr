@@ -35,7 +35,6 @@
 #ifndef _PyImathQuat_h_
 #define _PyImathQuat_h_
 
-#include <Python.h>
 #include <boost/python.hpp>
 #include <PyImath.h>
 #include <ImathQuat.h>

@@ -35,7 +35,6 @@
 #ifndef _PyImathRandom_h_
 #define _PyImathRandom_h_
 
-#include <Python.h>
 #include "PyImathExport.h"
 #include <boost/python.hpp>
 #include <ImathRandom.h>

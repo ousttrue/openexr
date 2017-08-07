@@ -71,7 +71,7 @@ pyHaveLock()
 
     // If the interpreter is initialized the gil is held if the
     // current thread's thread state is the current thread state
-    return myThreadState != 0 && myThreadState == _PyThreadState_Current;
+    return myThreadState != 0 && myThreadState == _PyThreadState_UncheckedGet();
 }
 
 PyReleaseLock::PyReleaseLock()

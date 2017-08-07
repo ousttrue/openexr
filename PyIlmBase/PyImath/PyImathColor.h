@@ -35,7 +35,6 @@
 #ifndef _PyImathColor3_h_
 #define _PyImathColor3_h_
 
-#include <Python.h>
 #include <boost/python.hpp>
 #include <PyImath.h>
 #include <ImathColor.h>

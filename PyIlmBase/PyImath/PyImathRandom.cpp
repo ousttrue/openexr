@@ -35,7 +35,6 @@
 
 #include <PyImathRandom.h>
 #include "PyImathDecorators.h"
-#include <Python.h>
 #include <boost/python.hpp>
 #include <boost/format.hpp>
 #include <boost/python/make_constructor.hpp>

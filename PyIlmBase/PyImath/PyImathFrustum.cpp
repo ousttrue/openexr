@@ -35,7 +35,6 @@
 #include <PyImathFrustum.h>
 #include "PyImathDecorators.h"
 #include "PyImathExport.h"
-#include <Python.h>
 #include <boost/python.hpp>
 #include <boost/format.hpp>
 #include <PyImath.h>

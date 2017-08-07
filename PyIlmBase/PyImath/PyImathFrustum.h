@@ -35,7 +35,6 @@
 #ifndef _PyImathFrustum_h_
 #define _PyImathFrustum_h_
 
-#include <Python.h>
 #include <boost/python.hpp>
 //#include <PyImath.h>
 #include <ImathFrustum.h>

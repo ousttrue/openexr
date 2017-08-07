@@ -35,7 +35,6 @@
 #ifndef _PyImathEuler_h_
 #define _PyImathEuler_h_
 
-#include <Python.h>
 #include <boost/python.hpp>
 #include <PyImath.h>
 #include <ImathEuler.h>

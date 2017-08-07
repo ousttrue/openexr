@@ -1,3 +1,6 @@
+ADD_DEFINITIONS(
+    -DPYIMATH_EXPORTS
+    )
 
 ADD_LIBRARY ( PyImath ${LIB_TYPE}
     PyImath.cpp
@@ -30,7 +33,6 @@ ADD_LIBRARY ( PyImath ${LIB_TYPE}
     PyImathVec4fd.cpp
     PyImathVec4siArray.cpp
     PyImathVec4si.cpp
-
 )
 
 TARGET_LINK_LIBRARIES ( PyImath

@@ -35,7 +35,6 @@
 #ifndef _PyImathPlane_h_
 #define _PyImathPlane_h_
 
-#include <Python.h>
 #include <boost/python.hpp>
 #include <ImathPlane.h>
 #include <PyImath.h>
