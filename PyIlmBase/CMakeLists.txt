@@ -1,5 +1,4 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
-
 PROJECT (pyilmbase)
 
 SET(ILMBASE_VERSION_MAJOR "2")
@@ -25,6 +24,8 @@ set(CPACK_SOURCE_PACKAGE_FILE_NAME
 set(CPACK_SOURCE_IGNORE_FILES
   "/.git*;/.cvs*;${CPACK_SOURCE_IGNORE_FILES}")
 INCLUDE ( CPack )
+
+SET(CMAKE_CXX_FLAGS "/wd4725 /EHsc")
 
 # Set this option to find the C++ libs with their namespaced versions
 # The python modules themselves are built without versioning
@@ -64,6 +65,12 @@ LINK_DIRECTORIES (
     )
 MESSAGE ( "ILMBASE_PACKAGE_PREFIX = " ${ILMBASE_PACKAGE_PREFIX})
 
+FIND_PACKAGE(Alembic)
+SET(ALEMBIC_LIBRARIES
+    debug ${CMAKE_INSTALL_PREFIX}/debug/lib/Alembic.lib
+    optimized ${CMAKE_INSTALL_PREFIX}/lib/Alembic.lib
+    )
+MESSAGE(STATUS ${ALEMBIC_LIBRARIES})
 
 SET (ILMBASE_LIBSUFFIX "")
 IF (NAMESPACE_VERSIONING)
@@ -78,6 +85,8 @@ IF (NUMPY_FOUND)
   ADD_SUBDIRECTORY ( PyImathNumpy )
   ADD_SUBDIRECTORY ( PyImathNumpyTest )
 ENDIF ()
+
+ADD_SUBDIRECTORY ( PyAlembic )
   
 ##########################
 # Tests
