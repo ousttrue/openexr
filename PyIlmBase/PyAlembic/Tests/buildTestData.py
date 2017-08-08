@@ -34,6 +34,11 @@
 #
 #-******************************************************************************
 
+import os
+os.environ['PATH']+=(';'+os.environ['VCPKG_DIR']+'\\installed\\x64-windows\\bin')
+import sys
+sys.path.append('.')
+
 from imath import *
 from alembic.AbcCoreAbstract import *
 from alembic.Abc import *

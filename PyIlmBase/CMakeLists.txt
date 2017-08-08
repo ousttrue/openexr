@@ -41,12 +41,12 @@ FIND_PACKAGE ( PythonLibs REQUIRED )
 #FIND_PACKAGE ( PythonInterp REQUIRED )
 FIND_PACKAGE ( Boost)
 SET(Boost_LIBRARIES
-    optimized ${Boost_INCLUDE_DIR}/stage/x86_64/lib/libboost_python3-vc140-mt-1_64.lib
-    debug ${Boost_INCLUDE_DIR}/stage/x86_64/lib/libboost_python3-vc140-mt-gd-1_64.lib
+    optimized ${Boost_INCLUDE_DIR}/stage/x86_64/lib/boost_python3-vc140-mt-1_61.lib
+    debug ${Boost_INCLUDE_DIR}/stage/x86_64/lib/boost_python3-vc140-mt-gd-1_61.lib
     )
 #FIND_PACKAGE ( NumPy )
 ADD_DEFINITIONS(
-    -DBOOST_PYTHON_STATIC_LIB
+    #-DBOOST_PYTHON_STATIC_LIB
     -DBOOST_ALL_NO_LIB
     )
 
@@ -61,7 +61,7 @@ INCLUDE_DIRECTORIES (
 
 LINK_DIRECTORIES ( 
     ${ILMBASE_PACKAGE_PREFIX}/lib 
-    ${Boost_INCLUDE_DIR}/stage/x86_64/lib
+    #${Boost_INCLUDE_DIR}/stage/x86_64/lib
     )
 MESSAGE ( "ILMBASE_PACKAGE_PREFIX = " ${ILMBASE_PACKAGE_PREFIX})
 

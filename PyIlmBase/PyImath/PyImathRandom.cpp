@@ -227,7 +227,6 @@ register_Rand32()
         .def("nextSolidSphere", nextSolidSphere4)    
         ;
 
-    /*
     def("hollowSphereRand",&hollowSphereRand<float,IMATH_NAMESPACE::Rand32>,"hollowSphereRand(randObj,num) return XYZ vectors uniformly "
         "distributed across the surface of a sphere generated from the given Rand32 object",
         args("randObj","num"));
@@ -235,7 +234,6 @@ register_Rand32()
     def("solidSphereRand",&solidSphereRand<float,IMATH_NAMESPACE::Rand32>,"solidSphereRand(randObj,num) return XYZ vectors uniformly "
         "distributed through the volume of a sphere generated from the given Rand32 object",
         args("randObj","num"));
-        */
 
     decoratecopy(rand32_class);
 
