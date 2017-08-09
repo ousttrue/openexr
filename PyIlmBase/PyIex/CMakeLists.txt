@@ -4,6 +4,10 @@ ADD_DEFINITIONS(
 
 ADD_LIBRARY ( PyIex ${LIB_TYPE}
 	PyIex.cpp
+
+    PyIex.h
+    PyIexExport.h
+    PyIexTypeTranslator.h
 )
 
 TARGET_LINK_LIBRARIES ( PyIex

@@ -26,6 +26,9 @@ set(CPACK_SOURCE_IGNORE_FILES
 INCLUDE ( CPack )
 
 SET(CMAKE_CXX_FLAGS "/wd4725 /EHsc /bigobj")
+SET(CMAKE_CXX_FLAGS_DEBUG
+    /Z7
+    )
 
 # Set this option to find the C++ libs with their namespaced versions
 # The python modules themselves are built without versioning
@@ -37,17 +40,14 @@ SET (BUILD_WITH_INSTALL_RPATH 1)
 
 SET (LIB_TYPE SHARED)
 
-FIND_PACKAGE ( PythonLibs REQUIRED )
+FIND_PACKAGE (PythonLibs REQUIRED )
 #FIND_PACKAGE ( PythonInterp REQUIRED )
-FIND_PACKAGE ( Boost)
-SET(Boost_LIBRARIES
-    optimized ${Boost_INCLUDE_DIR}/stage/x86_64/lib/boost_python3-vc140-mt-1_61.lib
-    debug ${Boost_INCLUDE_DIR}/stage/x86_64/lib/boost_python3-vc140-mt-gd-1_61.lib
-    )
+FIND_PACKAGE (Boost COMPONENTS python3 REQUIRED)
+#MESSAGE(STATUS ${Boost_LIBRARIES})
 #FIND_PACKAGE ( NumPy )
 ADD_DEFINITIONS(
     #-DBOOST_PYTHON_STATIC_LIB
-    -DBOOST_ALL_NO_LIB
+    -DBOOST_ALL_NO_LIB # avoid boost autolink
     )
 
 INCLUDE_DIRECTORIES (
@@ -61,7 +61,6 @@ INCLUDE_DIRECTORIES (
 
 LINK_DIRECTORIES ( 
     ${ILMBASE_PACKAGE_PREFIX}/lib 
-    #${Boost_INCLUDE_DIR}/stage/x86_64/lib
     )
 MESSAGE ( "ILMBASE_PACKAGE_PREFIX = " ${ILMBASE_PACKAGE_PREFIX})
 

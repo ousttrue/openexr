@@ -194,7 +194,7 @@ static std::string Plane3_str(const Plane3<T> &plane)
 
     PyObject *normalObj = V3<T>::wrap (plane.normal);
     PyObject *normalReprObj = PyObject_Repr (normalObj);
-    std::string normalReprStr = PyBytes_AsString (normalReprObj);
+    std::string normalReprStr = PyUnicode_AsUTF8(normalReprObj);
     Py_DECREF (normalReprObj);
     Py_DECREF (normalObj);
 
@@ -216,7 +216,7 @@ std::string Plane3_repr(const Plane3<float> &plane)
 {
     PyObject *normalObj = V3<float>::wrap (plane.normal);
     PyObject *normalReprObj = PyObject_Repr (normalObj);
-    std::string normalReprStr = PyBytes_AsString (normalReprObj);
+    std::string normalReprStr = PyUnicode_AsUTF8(normalReprObj);
     Py_DECREF (normalReprObj);
     Py_DECREF (normalObj);
 
@@ -232,7 +232,7 @@ std::string Plane3_repr(const Plane3<double> &plane)
 {
     PyObject *normalObj = V3<double>::wrap (plane.normal);
     PyObject *normalReprObj = PyObject_Repr (normalObj);
-    std::string normalReprStr = PyBytes_AsString (normalReprObj);
+    std::string normalReprStr = PyUnicode_AsUTF8(normalReprObj);
     Py_DECREF (normalReprObj);
     Py_DECREF (normalObj);
 
