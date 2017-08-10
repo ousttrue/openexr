@@ -49,6 +49,7 @@ MESSAGE(STATUS ${Boost_LIBRARIES})
 ADD_DEFINITIONS(
     #-DBOOST_PYTHON_STATIC_LIB
     #-DBOOST_ALL_NO_LIB # avoid boost autolink
+    -DALEMBIC_DLL
     )
 
 INCLUDE_DIRECTORIES (
@@ -90,7 +91,8 @@ IF (NUMPY_FOUND)
 ENDIF ()
 
 ADD_SUBDIRECTORY ( PyAlembic )
-  
+ADD_SUBDIRECTORY (PyAbcOpenGL)
+
 ##########################
 # Tests
 ##########################
