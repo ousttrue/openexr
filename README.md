@@ -1,5 +1,11 @@
-# OpenEXR
+# This repository
 
+is pyAlembic experiment on Windows and python3
+
+* add [PyAlembic](https://github.com/alembic/alembic/tree/master/python/PyAlembic)
+* add [AbcOpenGL](https://github.com/alembic/abcview/tree/master/lib/AbcOpenGL)
+
+# OpenEXR
 
 **OpenEXR** is a high dynamic-range (HDR) image file format developed by
 Industrial Light & Magic (ILM) for use in computer imaging applications.
