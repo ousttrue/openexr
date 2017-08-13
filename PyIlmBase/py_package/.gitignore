@@ -1,0 +1,7 @@
+*.dll
+*.pyd
+*.lib
+*.pyc
+/alembic.egg-info
+/dist
+/build
