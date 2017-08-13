@@ -51,6 +51,10 @@ ADD_DEFINITIONS(
     #-DBOOST_ALL_NO_LIB # avoid boost autolink
     -DALEMBIC_DLL
     )
+SET(Boost_RUNTIMES
+    ${BOOST_ROOT}/stage/lib/boost_python-vc140-mt-1_61.dll
+    ${BOOST_ROOT}/stage/lib/boost_python-vc140-mt-gd-1_61.dll
+    )
 
 INCLUDE_DIRECTORIES (
 	${ILMBASE_PACKAGE_PREFIX}/include/OpenEXR
@@ -79,7 +83,7 @@ IF (NAMESPACE_VERSIONING)
   SET ( ILMBASE_LIBSUFFIX "-${ILMBASE_VERSION_API}" )
 ENDIF ()
 
-SET(INSTALL_DIR ${CMAKE_CURRENT_LIST_DIR}/PyAlembic/Tests)
+SET(INSTALL_DIR ${CMAKE_CURRENT_LIST_DIR}/py_package/ilm)
 
 ##########################
 ADD_SUBDIRECTORY ( PyIex )
@@ -98,4 +102,18 @@ ADD_SUBDIRECTORY (PyAbcOpenGL)
 ##########################
 ADD_SUBDIRECTORY ( PyIexTest )
 ADD_SUBDIRECTORY ( PyImathTest )
+
+INSTALL(FILES 
+    ${CMAKE_INSTALL_PREFIX}/bin/AlembicAbcOpenGL.dll
+    ${CMAKE_INSTALL_PREFIX}/bin/Alembic.dll
+    ${CMAKE_INSTALL_PREFIX}/bin/hdf5.dll
+    ${CMAKE_INSTALL_PREFIX}/bin/imath-2_2.dll
+    ${CMAKE_INSTALL_PREFIX}/bin/iex-2_2.dll
+    ${CMAKE_INSTALL_PREFIX}/bin/iexmath-2_2.dll
+    ${CMAKE_INSTALL_PREFIX}/bin/half.dll
+    ${CMAKE_INSTALL_PREFIX}/bin/zlib1.dll
+    ${CMAKE_INSTALL_PREFIX}/bin/szip.dll
+    ${Boost_RUNTIMES}
+    DESTINATION ${INSTALL_DIR}
+    )
 
