@@ -13,7 +13,9 @@ setup(
         version='0.1',
         description='Alembic Library',
         packages=['ilm', 'iex', 'imath', 'alembic', 'alembicgl'],
-        include_package_data=True,
+        package_data={
+            'ilm':['*.pyd', '*.dll'],
+            },
         distclass=BinaryDistribution
         )
 

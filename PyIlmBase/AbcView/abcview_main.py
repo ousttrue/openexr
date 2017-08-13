@@ -84,10 +84,10 @@ if __name__ == "__main__":
                             verbose=args.verbose
                            )
                 )
-    except ImportError, e:
-        print "abcview import error", e
+    except ImportError as e:
+        print("abcview import error", e)
     except KeyboardInterrupt:
-        print "stopping..."
-    except Exception, e:
+        print("stopping...")
+    except Exception as e:
         traceback.print_exc()
     sys.exit(1)

@@ -118,7 +118,7 @@ class idict(object):
         return len(self.properties)
 
     def __iter__(self):
-        return iter(self.keys())
+        return iter(list(self.keys()))
 
     def __getattr__(self, key):
         return super(idict, self).__getattr__(key)
@@ -130,7 +130,7 @@ class idict(object):
         return self.get(key)
 
     def _get_properties(self):
-        return dict(self.items())
+        return dict(list(self.items()))
 
     def _set_properties(self, value):
         if type(value) in (dict, ):
@@ -154,13 +154,13 @@ class idict(object):
         return key in self.local or key in self.inherited
 
     def keys(self):
-        return dict(self.inherited.items() + self.local.items()).keys()
+        return list(dict(list(self.inherited.items()) + list(self.local.items())).keys())
 
     def values(self):
-        return dict(self.inherited.items() + self.local.items()).values()
+        return list(dict(list(self.inherited.items()) + list(self.local.items())).values())
 
     def items(self):
-        return dict(self.inherited.items() + self.local.items()).items()
+        return list(dict(list(self.inherited.items()) + list(self.local.items())).items())
 
 class Base(object):
     def __init__(self, parent=None):
@@ -714,7 +714,7 @@ class Session(FileBase, EditableMixin):
             self.load(filepath)
 
     def __contains__(self, item):
-        if type(item) in [str, unicode]:
+        if type(item) in [str, str]:
             item = Scene(item)
         return item.filepath in [i.filepath for i in self.__items]
 
@@ -727,7 +727,7 @@ class Session(FileBase, EditableMixin):
     items = property(_get_items, _set_items, doc="child items")
 
     def _get_cameras(self):
-        return [camera for camera in self.__cameras.values()]
+        return [camera for camera in list(self.__cameras.values())]
     
     def _set_cameras(self):
         raise NotImplementedError("Use add_camera()")
@@ -750,7 +750,7 @@ class Session(FileBase, EditableMixin):
             if item.type() == Camera.type():
                 return
 
-            for path, overs in item.overrides.items():
+            for path, overs in list(item.overrides.items()):
 
                 if item.type() == Scene.type():
                     if path == item.instancepath():
@@ -829,7 +829,7 @@ class Session(FileBase, EditableMixin):
         log.debug("[%s.set_camera] %s" % (self, camera))
         if camera.name not in self.__cameras:
             self.__cameras[camera.name] = camera
-        for name, cam in self.__cameras.items():
+        for name, cam in list(self.__cameras.items()):
             cam.loaded = False
         self.__cameras[camera.name].loaded = True
 
@@ -997,7 +997,7 @@ class Session(FileBase, EditableMixin):
             "max_time": self.max_time,
             "current_time": self.current_time,
             "frames_per_second": self.frames_per_second,
-            "cameras": [camera.serialize() for camera in self.__cameras.values()],
+            "cameras": [camera.serialize() for camera in list(self.__cameras.values())],
             "data": self.serialize()
         }
         json.dump(state, open(filepath, "w"), sort_keys=True, indent=4)

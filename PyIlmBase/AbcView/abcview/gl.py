@@ -50,10 +50,10 @@ from OpenGL.GLU import *
 try:
     import alembicgl
 except ImportError:
-    print """
+    print("""
     The alembicgl module was not found. Be sure to build AbcOpenGL and
     the PyAbcOpenGL Python bindings.
-    """
+    """)
 
 import abcview
 from abcview import log
@@ -179,7 +179,7 @@ class SceneWrapper(alembicgl.SceneWrapper):
             try:
                 super(SceneWrapper, self).__init__(self.filepath)
                 self.loaded = True
-            except Exception, e:
+            except Exception as e:
                 log.warn("BAD ARCHIVE: %s\n%s" % (self.filepath, str(e)))
                 self.bad = True
 
@@ -338,7 +338,7 @@ class GLCameraMixin(object):
         pass
 
     def resize(self):
-        for view, camera in self.views.items():
+        for view, camera in list(self.views.items()):
             camera.setSize(view.width(), view.height())
 
     def add_view(self, viewer):
@@ -416,29 +416,29 @@ class GLCamera(abcview.io.Camera, GLCameraMixin):
         return "<%s \"%s\">" % (self.__class__.__name__, self.name)
 
     def dolly(self, dx, dy):
-        for cam in self.views.values():
+        for cam in list(self.views.values()):
             cam.dolly(imath.V2d(dx, dy))
         self._update()
 
     def track(self, dx, dy):
-        for cam in self.views.values():
+        for cam in list(self.views.values()):
             cam.track(imath.V2d(dx, dy))
         self._update()
 
     def rotate(self, dx, dy):
-        for uid, cam in self.views.items():
+        for uid, cam in list(self.views.items()):
             cam.rotate(imath.V2d(dx, dy))
         self._update()
 
     def look_at(self, eye, at):
-        for cam in self.views.values():
+        for cam in list(self.views.values()):
             cam.lookAt(eye, at)
         self._update()
 
     def frame(self, bounds):
         if bounds is None:
             return
-        for cam in self.views.values():
+        for cam in list(self.views.values()):
             cam.frame(bounds)
         self._update()
 
@@ -457,7 +457,7 @@ class GLCamera(abcview.io.Camera, GLCameraMixin):
         if type(value) in (list, tuple):
             value = imath.V3d(*value)
         self._translation = value
-        for cam in self.views.values():
+        for cam in list(self.views.values()):
             cam.setTranslation(value)
 
     translation = property(_get_translation, _set_translation, 
@@ -472,7 +472,7 @@ class GLCamera(abcview.io.Camera, GLCameraMixin):
         if type(value) in (list, tuple):
             value = imath.V3d(*value)
         self._rotation = value
-        for cam in self.views.values():
+        for cam in list(self.views.values()):
             cam.setRotation(value)
 
     rotation = property(_get_rotation, _set_rotation, 
@@ -487,7 +487,7 @@ class GLCamera(abcview.io.Camera, GLCameraMixin):
         if type(value) in (list, tuple):
             value = imath.V3d(*value)
         self._scale = value
-        for cam in self.views.values():
+        for cam in list(self.views.values()):
             cam.setScale(value)
 
     scale = property(_get_scale, _set_scale, doc="get/set scale (imath.V3d)")
@@ -499,7 +499,7 @@ class GLCamera(abcview.io.Camera, GLCameraMixin):
 
     def _set_near(self, value):
         self._near = value
-        for cam in self.views.values():
+        for cam in list(self.views.values()):
             cam.setClippingPlanes(value, self.far)
 
     near = property(_get_near, _set_near, doc="get/set near clipping plane")
@@ -511,7 +511,7 @@ class GLCamera(abcview.io.Camera, GLCameraMixin):
    
     def _set_far(self, value):
         self._far = value
-        for cam in self.views.values():
+        for cam in list(self.views.values()):
             cam.setClippingPlanes(self.near, value)
 
     far = property(_get_far, _set_far, doc="get/set far clipping plane")
@@ -523,7 +523,7 @@ class GLCamera(abcview.io.Camera, GLCameraMixin):
    
     def _set_fovy(self, value):
         self._fovy = value
-        for cam in self.views.values():
+        for cam in list(self.views.values()):
             cam.setFovy(value)
 
     fovy = property(_get_fovy, _set_fovy, doc="get/set camera fov Y")
@@ -554,7 +554,7 @@ class GLCamera(abcview.io.Camera, GLCameraMixin):
 
     def _set_center(self, value):
         self._center = value
-        for cam in self.views.values():
+        for cam in list(self.views.values()):
             cam.setCenterOfInterest(max(value, 0.1))
 
     center = property(_get_center, _set_center, doc="center of interest")
@@ -569,7 +569,7 @@ class GLCamera(abcview.io.Camera, GLCameraMixin):
         cam.setSize(size[0], size[1])
 
     def apply(self):
-        for view, camera in self.views.items():
+        for view, camera in list(self.views.items()):
             camera.setClippingPlanes(self.near, self.far)
             camera.apply()
 
@@ -650,7 +650,7 @@ class GLICamera(abcview.io.ICamera, GLCameraMixin):
     matrix = property(_get_matrix, _not_settable, doc="M44d transformation matrix")
 
     def apply(self):
-        for view, camera in self.views.items():
+        for view, camera in list(self.views.items()):
             camera.setTranslation(self.translation)
             camera.setRotation(self.rotation)
             camera.setClippingPlanes(self.near, self.far)
@@ -710,7 +710,7 @@ class GLScene(abcview.io.Scene):
         """
         try:
             self.scene.draw(visible_only, bounds_only)
-        except RuntimeError, e:
+        except RuntimeError as e:
             log.error(str(e))
     
     def draw_bounds(self, seconds=0, mode=GL_LINES):
@@ -729,7 +729,7 @@ class GLScene(abcview.io.Scene):
         else:
             try:
                 self.scene.draw_bounds(mode)
-            except RuntimeError, e:
+            except RuntimeError as e:
                 log.error(str(e))
         
         glPopName()

@@ -162,7 +162,7 @@ FixedArray2D<int> rangeY(int sizeX, int sizeY)
 
 BOOST_PYTHON_MODULE(imath)
 {
-    handle<> iex(PyImport_ImportModule("iex"));
+    handle<> iex(PyImport_ImportModule("ilm.iex"));
     if (PyErr_Occurred()) boost::python::throw_error_already_set();
     
     scope().attr("iex") = iex;

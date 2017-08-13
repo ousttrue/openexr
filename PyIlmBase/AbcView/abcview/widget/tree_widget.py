@@ -86,7 +86,7 @@ class ArrayThread(QtCore.QThread):
 
     def run(self):
         try:
-            if type(self.array) in (str, unicode, int, float, bool):
+            if type(self.array) in (str, str, int, float, bool):
                 self.emit(QtCore.SIGNAL('arrayValue (PyQt_PyObject)'), (0, str(self.array)))
             else:
                 for index, value in enumerate(self.array[self.first:]):
@@ -94,7 +94,7 @@ class ArrayThread(QtCore.QThread):
                     self.emit(QtCore.SIGNAL('arrayValue (PyQt_PyObject)'), (index, value))
                     if index >= self.last:
                         break
-        except TypeError, e:
+        except TypeError as e:
             self.emit(QtCore.SIGNAL('arrayValue (PyQt_PyObject)'), (0, str(self.array)))
 
 class SceneLineEditor(QtGui.QLineEdit):
@@ -269,7 +269,7 @@ class EditableTreeWidgetItem(AbcTreeWidgetItem):
     def formatted(self):
         if self.type() in (list, tuple):
             return ", ".join([str(v) for v in self.value()])
-        elif self.type() in (unicode, str, int, float, bool):
+        elif self.type() in (str, str, int, float, bool):
             return str(self.value())
 
     def type(self):
@@ -401,7 +401,7 @@ class SessionTreeWidgetItem(AbcTreeWidgetItem):
         self.setCheckState(self.treeWidget().colnum(""), QtCore.Qt.Unchecked)
 
     def properties(self):
-        return self.object.properties.items()
+        return list(self.object.properties.items())
 
     def is_removable(self):
         return True
@@ -466,7 +466,7 @@ class DeselectableTreeWidget(QtGui.QTreeWidget):
 class AbcTreeWidget(DeselectableTreeWidget):
     DEFAULT_COLUMN_NAMES = ['name',  ]
     DEFAULT_COLUMNS = dict(enumerate(DEFAULT_COLUMN_NAMES))
-    DEFAULT_COLUMNS.update(dict(zip(DEFAULT_COLUMN_NAMES, range(len(DEFAULT_COLUMN_NAMES)))))
+    DEFAULT_COLUMNS.update(dict(list(zip(DEFAULT_COLUMN_NAMES, list(range(len(DEFAULT_COLUMN_NAMES)))))))
     COLUMNS = copy.copy(DEFAULT_COLUMNS)
 
     signal_item_selected = QtCore.pyqtSignal()
@@ -694,7 +694,7 @@ class AbcTreeWidget(DeselectableTreeWidget):
 class ObjectTreeWidget(AbcTreeWidget):
     DEFAULT_COLUMN_NAMES = ['name', '', 'color', 'hidden', ]
     DEFAULT_COLUMNS = dict(enumerate(DEFAULT_COLUMN_NAMES))
-    DEFAULT_COLUMNS.update(dict(zip(DEFAULT_COLUMN_NAMES, range(len(DEFAULT_COLUMN_NAMES)))))
+    DEFAULT_COLUMNS.update(dict(list(zip(DEFAULT_COLUMN_NAMES, list(range(len(DEFAULT_COLUMN_NAMES)))))))
     COLUMNS = copy.copy(DEFAULT_COLUMNS)
 
     # signal for viewing through selected camera
@@ -921,7 +921,7 @@ class ObjectTreeWidget(AbcTreeWidget):
 class PropertyTreeWidget(AbcTreeWidget):
     DEFAULT_COLUMN_NAMES = ['name', 'type', 'datatype', 'value', ]
     DEFAULT_COLUMNS = dict(enumerate(DEFAULT_COLUMN_NAMES))
-    DEFAULT_COLUMNS.update(dict(zip(DEFAULT_COLUMN_NAMES, range(len(DEFAULT_COLUMN_NAMES)))))
+    DEFAULT_COLUMNS.update(dict(list(zip(DEFAULT_COLUMN_NAMES, list(range(len(DEFAULT_COLUMN_NAMES)))))))
     COLUMNS = copy.copy(DEFAULT_COLUMNS)
     EDITABLE = ["name", "filepath", "translate", "rotate", "scale", "color"]
 
@@ -945,7 +945,7 @@ class PropertyTreeWidget(AbcTreeWidget):
 
             if type(item) == SceneTreeWidgetItem:
                 info = alembic.Abc.GetArchiveInfo(item.object.archive)
-                for key, value in info.items():
+                for key, value in list(info.items()):
                     self.addTopLevelItem(EditableTreeWidgetItem(self, item, (key, value)))
 
             for property in item.properties():
@@ -965,7 +965,7 @@ class PropertyTreeWidget(AbcTreeWidget):
 class SampleTreeWidget(AbcTreeWidget):
     DEFAULT_COLUMN_NAMES = ['index', 'size', 'value', ]
     DEFAULT_COLUMNS = dict(enumerate(DEFAULT_COLUMN_NAMES))
-    DEFAULT_COLUMNS.update(dict(zip(DEFAULT_COLUMN_NAMES, range(len(DEFAULT_COLUMN_NAMES)))))
+    DEFAULT_COLUMNS.update(dict(list(zip(DEFAULT_COLUMN_NAMES, list(range(len(DEFAULT_COLUMN_NAMES)))))))
     COLUMNS = copy.copy(DEFAULT_COLUMNS)
 
     def __init__(self, parent, main):
@@ -979,7 +979,7 @@ class SampleTreeWidget(AbcTreeWidget):
                 sample = item.samples()[index]
                 valid = True
                 tooltip = ""
-            except RuntimeError, e:
+            except RuntimeError as e:
                 valid = False
                 tooltip = str(e)
                 msg = str(e).split("\n")[-1]
@@ -992,7 +992,7 @@ class SampleTreeWidget(AbcTreeWidget):
 class ArrayTreeWidget(AbcTreeWidget):
     DEFAULT_COLUMN_NAMES = ['index', 'value', ]
     DEFAULT_COLUMNS = dict(enumerate(DEFAULT_COLUMN_NAMES))
-    DEFAULT_COLUMNS.update(dict(zip(DEFAULT_COLUMN_NAMES, range(len(DEFAULT_COLUMN_NAMES)))))
+    DEFAULT_COLUMNS.update(dict(list(zip(DEFAULT_COLUMN_NAMES, list(range(len(DEFAULT_COLUMN_NAMES)))))))
     COLUMNS = copy.copy(DEFAULT_COLUMNS)
 
     def __init__(self, parent, main):

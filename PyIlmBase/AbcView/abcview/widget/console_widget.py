@@ -115,7 +115,7 @@ To get the selected item from the Objects Tree,
 
     def getCommand(self):
         doc = self.document()
-        curr_line = unicode(doc.findBlockByLineNumber(doc.lineCount() - 1).text())
+        curr_line = str(doc.findBlockByLineNumber(doc.lineCount() - 1).text())
         curr_line = curr_line.rstrip()
         curr_line = curr_line[len(self.prompt):]
         return curr_line
@@ -196,7 +196,7 @@ To get the selected item from the Objects Tree,
                 self.appendPlainText("\t".join(matches))
             self.newPrompt()
             self.setCommand(cmd)
-        except ImportError, e:
+        except ImportError as e:
             log.error(e)
     
     def runScript(self, script_path):
@@ -204,8 +204,8 @@ To get the selected item from the Objects Tree,
             return
         try:
             log.info("executing: %s" % script_path)
-            execfile(script_path, self.namespace, self.namespace)
-        except Exception, e:
+            exec(compile(open(script_path).read(), script_path, 'exec'), self.namespace, self.namespace)
+        except Exception as e:
             err = traceback.format_exc()
             log.error("%s: %s" % (os.path.basename(script_path), err))
 
@@ -237,7 +237,7 @@ To get the selected item from the Objects Tree,
                     if result != None:
                         self.appendPlainText(repr(result))
                 except SyntaxError:
-                    exec command in self.namespace
+                    exec(command, self.namespace)
             except SystemExit:
                 self.close()
             except:

@@ -309,7 +309,7 @@ class AbcMenuBar(QtGui.QMenuBar):
                 if versions:
                     version = versions[0]
 
-            except Exception, e:
+            except Exception as e:
                 log.error(e)
 
             return doc, name, version, author
@@ -344,7 +344,7 @@ class AbcMenuBar(QtGui.QMenuBar):
             """
             builds up the script menu from a dict of found scripts
             """
-            for name, meta in scripts.items():
+            for name, meta in list(scripts.items()):
                 doc = meta.get("doc")
                 version = meta.get("version")
                 author = meta.get("author")
@@ -687,7 +687,7 @@ class AbcView(QtGui.QMainWindow):
         Loads AbcView layout settings from a PyQt settings file.
         """
         geom = self.settings.value('geometry')
-        if geom.isNull() or not geom.isValid():
+        if not geom or geom.isNull() or not geom.isValid():
             self.reset_settings()
             return
 
@@ -871,7 +871,7 @@ class AbcView(QtGui.QMainWindow):
         # build the abcview session
         try:
             self._load()
-        except Exception, e:
+        except Exception as e:
             traceback.print_exc()
             log.error(e)
 
@@ -903,7 +903,7 @@ class AbcView(QtGui.QMainWindow):
                     continue
                 try:
                     self.session.add_file(filepath)
-                except abcview.io.AbcViewError, e:
+                except abcview.io.AbcViewError as e:
                     log.debug(str(e))
                     _bad_files.append(filepath)
 
@@ -1064,7 +1064,7 @@ class AbcView(QtGui.QMainWindow):
             self.session.current_time = self.viewer.state.current_time
             self.session.frames_per_second = self.viewer.state.frames_per_second
             self.session.save(filepath)
-        except Exception, e:
+        except Exception as e:
             traceback.print_exc()
             message("Error saving file:\n\n%s" % str(e))
 
@@ -1531,9 +1531,9 @@ def version_check():
     if int(major) >= MAJOR and int(minor) >= MINOR:
         return 1
     else:
-        print "%s %s requires Alembic %s.%s.%s or greater" \
+        print("%s %s requires Alembic %s.%s.%s or greater" \
                 % (config.__prog__, config.__version__, \
-                   MAJOR, MINOR, MAINT)
+                   MAJOR, MINOR, MAINT))
         return 0
 
 def create_app(files = None,

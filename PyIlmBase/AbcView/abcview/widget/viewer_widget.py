@@ -237,7 +237,7 @@ class GLState(QtCore.QObject):
         self.signal_state_change.emit()
 
     def _get_cameras(self):
-        return self.__cameras.values()
+        return list(self.__cameras.values())
 
     def _set_cameras(self):
         log.debug("use add_camera()")
@@ -296,7 +296,7 @@ class GLState(QtCore.QObject):
         :param camera: GLCamera object
         """
         log.debug("[%s.add_camera] %s" % (self, camera))
-        if camera and camera.name not in self.__cameras.keys():
+        if camera and camera.name not in list(self.__cameras.keys()):
             self.__cameras[camera.name] = camera
             return True
         return False
@@ -307,7 +307,7 @@ class GLState(QtCore.QObject):
 
         :param camera: GLCamera object
         """
-        if type(camera) in [str, unicode]:
+        if type(camera) in [str, str]:
             del self.__cameras[name]
         else:
             del self.__cameras[camera.name]
@@ -421,7 +421,7 @@ class GLState(QtCore.QObject):
         """
         Returns total frame count.
         """
-        return len(range(*self.frame_range())) + 1
+        return len(list(range(*self.frame_range()))) + 1
     
     def is_playing(self):
         """
@@ -611,7 +611,7 @@ class GLWidget(QtOpenGL.QGLWidget):
         :param camera: Name of camera or GLCamera object
         """
         log.debug("[%s.set_camera] %s" % (self, camera))
-        if type(camera) in [str, unicode]:
+        if type(camera) in [str, str]:
             if "/" in camera:
                 camera = os.path.split("/")[-1]
             elif camera not in [cam.name for cam in self.state.cameras]:
@@ -814,7 +814,7 @@ class GLWidget(QtOpenGL.QGLWidget):
             for child in obj.children:
                 try:
                     _draw(child)
-                except Exception, e:
+                except Exception as e:
                     log.warn("unhandled exception: %s" % e)
 
         for scene in self.state.scenes:
@@ -959,7 +959,7 @@ class GLWidget(QtOpenGL.QGLWidget):
         self.setCursor(QtCore.Qt.WaitCursor)
         if self.sender(): # via menu action 
             mode = self.sender().data().toInt()[0]
-        if mode not in GL_MODE_MAP.keys():
+        if mode not in list(GL_MODE_MAP.keys()):
             raise Exception("Invalid drawing mode: %s" % mode)
         self.camera.mode = mode
         self.setCursor(QtCore.Qt.ArrowCursor)
@@ -1196,7 +1196,7 @@ class GLWidget(QtOpenGL.QGLWidget):
     def resizeGL(self, width, height):
         try:
             self.camera.resize()
-        except AttributeError, e:
+        except AttributeError as e:
             pass
 
     @update_camera
