@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1ab28f0c-ceff-4919-b6a1-4cb842258f03}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>abcview_main.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="abcview\app.py" />
+    <Compile Include="abcview\config.py" />
+    <Compile Include="abcview\gl.py" />
+    <Compile Include="abcview\io.py" />
+    <Compile Include="abcview\script\__init__.py" />
+    <Compile Include="abcview\style.py" />
+    <Compile Include="abcview\utils.py" />
+    <Compile Include="abcview\widget\console_widget.py" />
+    <Compile Include="abcview\widget\time_slider.py" />
+    <Compile Include="abcview\widget\tree_widget.py" />
+    <Compile Include="abcview\widget\viewer_widget.py" />
+    <Compile Include="abcview\widget\__init__.py" />
+    <Compile Include="abcview\__init__.py" />
+    <Compile Include="abcview_main.py" />
+    <Compile Include="setup.py" />
+    <Compile Include="test\testProperties.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="abcview\icon\branch-closed.png" />
+    <Content Include="abcview\icon\branch-end.png" />
+    <Content Include="abcview\icon\branch-more.png" />
+    <Content Include="abcview\icon\branch-open.png" />
+    <Content Include="abcview\icon\camera.png" />
+    <Content Include="abcview\icon\checked-radio.png" />
+    <Content Include="abcview\icon\checked.png" />
+    <Content Include="abcview\icon\edit.png" />
+    <Content Include="abcview\icon\eye-off.png" />
+    <Content Include="abcview\icon\eye.png" />
+    <Content Include="abcview\icon\logo.png" />
+    <Content Include="abcview\icon\object.png" />
+    <Content Include="abcview\icon\play.png" />
+    <Content Include="abcview\icon\split_horz.png" />
+    <Content Include="abcview\icon\split_vert.png" />
+    <Content Include="abcview\icon\stop.png" />
+    <Content Include="abcview\icon\unchecked-radio.png" />
+    <Content Include="abcview\icon\unchecked.png" />
+    <Content Include="abcview\icon\vline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="abcview" />
+    <Folder Include="abcview\icon" />
+    <Folder Include="abcview\script" />
+    <Folder Include="abcview\widget" />
+    <Folder Include="test" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
