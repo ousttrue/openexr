@@ -1340,7 +1340,7 @@ class AbcView(QtGui.QMainWindow):
                         % (Scene.EXT, Session.EXT)))
         if filepath:
             self.clear()
-            self.set_load_files([str(filepath.toAscii())])
+            self.set_load_files([str(filepath)])
             self._load()
 
     @make_dirty

@@ -178,7 +178,7 @@ class AbcTreeWidgetItem(QtGui.QTreeWidgetItem):
         setToolTip override that looks up the tree column header index.
         """
         super(AbcTreeWidgetItem, self).setToolTip(self.treeWidget().colnum(name), 
-                QtCore.QString(str(value)))
+                str(value))
 
     def keyPressEvent(self, event):
         self._parent.keyPressEvent(event)
