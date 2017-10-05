@@ -267,7 +267,7 @@ class TimeSlider(QtGui.QGroupBox):
         self.signal_frame_changed.emit(value)
 
     def handle_first_frame_changed(self):
-        value, ok = self.first_frame_label.text().toInt()
+        value = int(self.first_frame_label.text())
         if value <= self.__maximum:
             self.set_minimum(value)
             self.signal_first_frame_changed.emit(int(value))
@@ -275,7 +275,7 @@ class TimeSlider(QtGui.QGroupBox):
             self.set_minimum(self.__maximum)
 
     def handle_last_frame_changed(self):
-        value, ok = self.last_frame_label.text().toInt()
+        value = int(self.last_frame_label.text())
         if value >= self.__minimum:
             self.set_maximum(int(value))
             self.signal_last_frame_changed.emit(int(value))

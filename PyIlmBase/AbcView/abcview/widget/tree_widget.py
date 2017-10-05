@@ -198,7 +198,7 @@ class ObjectTreeWidgetItem(AbcTreeWidgetItem):
         if object:
             if self.object.getNumChildren() > 0:
                 self.setChildIndicatorPolicy(QtGui.QTreeWidgetItem.ShowIndicator)
-            self.setExpanded(False)
+            self.setExpanded(True)
             self.setText('name', object.getName())
             self.setToolTip('name', object.getFullName())
 
@@ -207,7 +207,8 @@ class ObjectTreeWidgetItem(AbcTreeWidgetItem):
         Generator that yields ObjectTreeWidgetItem objects.
         """
         self.treeWidget().setCursor(QtCore.Qt.WaitCursor)
-        for child in self.object.children:
+        for i in range(len(self.object.children)):
+            child = self.object.children[i]
             if self.seen:
                 continue
             md = child.getMetaData()
@@ -219,7 +220,8 @@ class ObjectTreeWidgetItem(AbcTreeWidgetItem):
 
     def properties(self):
         props = self.object.getProperties()
-        for header in props.propertyheaders:
+        for i in range(len(props.propertyheaders)):
+            header=props.propertyheaders[i]
             yield props.getProperty(header.getName())
 
     def bounds(self, sample_index=0):
@@ -589,7 +591,6 @@ class AbcTreeWidget(DeselectableTreeWidget):
         """
         if not self._item or not value:
             return
-        value = str(value.toAscii())
         if type(self._item) in (SessionTreeWidgetItem, SceneTreeWidgetItem):
             self._item.object.name = value
             self._item.setText('name', value)
@@ -606,7 +607,7 @@ class AbcTreeWidget(DeselectableTreeWidget):
         if not self._item or not self._item.editor:
             return
 
-        new_value = str(self._item.editor.text().toAscii())
+        new_value = self._item.editor.text()
 
         # from the objects tree, you can only rename sessions and scenes
         if type(self._item) in (SessionTreeWidgetItem, SceneTreeWidgetItem):
@@ -745,10 +746,10 @@ class ObjectTreeWidget(AbcTreeWidget):
             self.remove_item(self.selectedItems()[0])
 
     def handle_item_expanded(self, item):
-        if not item.seen:
-            for child in item.children():
-                item.addChild(child)
-            item.seen = True
+        #if not item.seen:
+        for child in item.children():
+            item.addChild(child)
+        item.seen = True
 
     def handle_set_color(self, ok):
         """
